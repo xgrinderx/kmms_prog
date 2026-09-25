@@ -3,6 +3,7 @@
 
 void my_sort(int* arr, int size);
 void heap_s(int* arr, int n, int i);
+void print_arr(int* arr, const char* comm, int size);
 
 int main() {
     int size;
@@ -18,21 +19,20 @@ int main() {
         original[i] = arr[i];
     }
     my_sort(arr, size);
-    std::cout << "Исходный массив: ";
-    for (int i = 0; i < size; ++i) {
-        std::cout << original[i] << (i + 1 < size ? ", " : "");
-    }
-    std::cout << std::endl;
-    std::cout << "Отсортированный: ";
-    for (int i = 0; i < size; ++i) {
-        std::cout << arr[i] << (i + 1 < size ? ", " : "");
-    }
-    std::cout << std::endl;
+    print_arr(original, "Исходный массив: ", size);
+    print_arr(arr, "Отсортированный: ", size);
     delete[] original;
     delete[] arr;
     return 0;
 }
 
+void print_arr(int* arr, const char* comm, int size) {
+    std::cout << comm;
+    for (int i = 0; i < size; ++i) {
+        std::cout << arr[i] << (i + 1 < size ? ", " : "");
+    }
+    std::cout << std::endl;
+}
 void heap_s(int* arr, int n, int i) {
     int largest = i;
     int left = 2 * i + 1;
